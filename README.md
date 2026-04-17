@@ -1,10 +1,13 @@
 # Turtlebot Capabilities
 
-Provides execution plans for Turtlebot robots. These has been tested with a Turtlebot4 robot.
+Provides execution plans for Turtlebot robots. These has been tested with a Turtlebot4 robot. 
 
 ## Examples
 
-Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/perception](https://github.com/CollaborativeRoboticsLab/perception) and [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools).
+Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/perception](https://github.com/CollaborativeRoboticsLab/perception),  [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools) and [CollaborativeRoboticsLab/fabric](https://github.com/CollaborativeRoboticsLab/fabric).
+
+Modify the following example plans to work with your robot and environment. These plans are designed to work with our lab's setup and might need modifications to work with your robot or environment.
+
 
 | Example | Description |
 | ---     | ---         |
@@ -17,9 +20,31 @@ Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/C
 | [turtlebot_6.xml](./plans/turtlebot_6.xml) | In this example, we define two points as point A and B as world information. The LLM would need to generate a plan or more that moves the robot To the point A and check for a person using vision or audio, then ask for the name. Then it should come back to the origin and repeat the name. | 
 | [turtlebot_7.xml](./plans/turtlebot_7.xml) | In this example, we define two points as point A and B as world information. The LLM would need to generate a plan or more that moves the robot To the point A and check for a person using vision or audio, then ask for the name. Then it should come back to the origin and repeat the name. If the person is not there, the robot is supposed to Go to point B instead. | 
 
+
+## Setup
+
+Above examples depend on the capabilities2, perception, prompt_tools and fabric packages. You can clone these packages in your workspace and build them using colcon build.
+
+```bash
+cd ~/colcon_ws/src
+git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git
+git clone https://github.com/CollaborativeRoboticsLab/fabric.git
+git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
+git clone https://github.com/CollaborativeRoboticsLab/prompt_tools.git
+git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git
+git clone https://github.com/CollaborativeRoboticsLab/perception.git
+git clone https://github.com/CollaborativeRoboticsLab/perception_capabilities.git
+git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git
+
+cd ~/colcon_ws
+colcon build --symlink-install
+```
+
 ## Run
 
-To run the examples, first make sure that the robot is running and then on seperate terminals run,
+To run the examples, first make sure that the robot is started and start nav2 stack on the robot.
+
+Then on remote computer, on seperate terminals run,
 
 ```bash
 source install/setup.bash
