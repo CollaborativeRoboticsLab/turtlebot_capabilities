@@ -1,5 +1,5 @@
 {
-  "name": "Fabric jazzy devcontainer",
+  "name": "Turtlebot Jazzy devcontainer",
   "dockerFile": "Dockerfile",
   "remoteUser": "ubuntu",
   "containerEnv": {

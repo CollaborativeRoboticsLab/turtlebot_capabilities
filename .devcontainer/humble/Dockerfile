@@ -17,13 +17,17 @@ RUN apt-get update && apt-get upgrade -y \
 RUN apt-get update && apt-get install --no-install-recommends -y \
     sudo \
     git \
+    curl \
+    libcurl4-openssl-dev \
     libpoco-dev \
+    nlohmann-json3-dev \
     ros-${ROS_DISTRO}-navigation2 \
     ros-${ROS_DISTRO}-geometry-msgs \
-    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
+    ros-${ROS_DISTRO}-image-transport \
+    ros-${ROS_DISTRO}-bondcpp \
     libportaudio2 \
     portaudio19-dev \
     python3-pyaudio \
@@ -51,6 +55,7 @@ RUN git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b d
 # RUN git clone https://github.com/CollaborativeRoboticsLab/perception.git -b humble
 # RUN git clone https://github.com/CollaborativeRoboticsLab/perception_capabilities.git
 # RUN git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git
+# RUN git clone https://github.com/CollaborativeRoboticsLab/fabric.git
 # RUN git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
 
 # git clone --recurse-submodules https://github.com/CollaborativeRoboticsLab/prompt_tools.git
@@ -58,4 +63,10 @@ RUN git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b d
 # git clone https://github.com/CollaborativeRoboticsLab/perception.git -b humble
 # git clone https://github.com/CollaborativeRoboticsLab/perception_capabilities.git
 # git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git
+# git clone https://github.com/CollaborativeRoboticsLab/fabric.git
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
+
+
+# "ros2 launch turtlebot4_navigation slam.launch.py"
+# "ros2 launch turtlebot4_navigation nav2.launch.py"
+# "ros2 launch turtlebot4_viz view_navigation.launch.py"
