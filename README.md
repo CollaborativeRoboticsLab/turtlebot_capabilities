@@ -27,7 +27,7 @@ Above examples depend on the capabilities2, perception, prompt_tools and fabric 
 
 ```bash
 cd ~/colcon_ws/src
-git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git
+git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b develop
 git clone https://github.com/CollaborativeRoboticsLab/fabric.git
 git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
 git clone https://github.com/CollaborativeRoboticsLab/prompt_tools.git
@@ -42,9 +42,23 @@ colcon build --symlink-install
 
 ## Run
 
-To run the examples, first make sure that the robot is started and start nav2 stack on the robot.
+To run the examples, first make sure that the robot is started and start nav2 stack on the robot using the following commands on separate terminals on the robot,
 
-Then on remote computer, on seperate terminals run,
+```bash
+ros2 launch turtlebot4_navigation slam.launch.py
+````
+
+```bash
+ros2 launch turtlebot4_navigation nav2.launch.py
+```
+
+Optional: If you want to visualize the robot in rviz, run the following command on remote computer's terminal,
+
+```bash
+ros2 launch turtlebot4_viz view_navigation.launch.py
+```
+
+Then on remote computer to start the system, on seperate terminals run,
 
 ```bash
 source install/setup.bash
@@ -54,8 +68,10 @@ ros2 launch capabilities2_server capabilities2_server.launch.py
 ```bash
 export OPENAI_API_KEY=
 source install/setup.bash
-ros2 launch perception server.launch.py
+ros2 launch turtlebot_capabilities perception.launch.py
 ```
+
+> Note, to accomodate the sensor setup/topics in the turtlebot4, we use a custom [perception config file](./config/perception_config.yaml) seperate from the default config found on the perception package. You can modify the config file to match your robot's sensor setup.
 
 ```bash
 export OPENAI_API_KEY=
@@ -65,7 +81,7 @@ ros2 launch prompt_bridge prompt_bridge.launch.py
 
 ```bash
 source install/setup.bash
-ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml
+ros2 launch turtlebot_capabilities fabric.launch.py filename:=turtlebot_1.xml
 ```
 
 Change `filename:=turtlebot_1.xml` to match the correct plan
