@@ -67,8 +67,8 @@
       vision:
         DefaultDriver:
           name: DefaultDriver
-          topic: /camera/color/image_raw
-
+          topic: /oakd/rgb/preview/image_raw
+ 
         OpenCVDriver:
           name: OpenCVDriver
           device_id: 0

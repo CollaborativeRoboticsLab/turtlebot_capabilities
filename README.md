@@ -41,6 +41,8 @@ colcon build --symlink-install
 
 ## Run
 
+### Starting the robot and nav2 stack
+
 To run the examples, first make sure that the robot is started and start nav2 stack on the robot using the following commands on separate terminals on the robot,
 
 ```bash
@@ -56,6 +58,16 @@ Optional: If you want to visualize the robot in rviz, run the following command 
 ```bash
 ros2 launch turtlebot4_viz view_navigation.launch.py
 ```
+
+> Note: Due to the interaction between CLI tools such as `ros2 topic ...`, `ros2 node ...` and rmw_fastrtps_cpp which we use in this devcontainer to communicate with the robot, it is recommended to use the `export ROS_SUPER_CLIENT=1` environment variable on the remote computer to avoid any issues with the CLI tools. Don't add the `export ROS_SUPER_CLIENT=1` to your bashrc, as it can cause issues with normal ROS2 nodes execution under rmw_fastrtps_cpp. Only use it when you are using CLI tools to communicate with the robot as shown below.
+
+```bash
+export ROS_SUPER_CLIENT=1
+ros2 daemon stop && ros2 daemon start
+ros2 topic list
+```
+
+### Starting the capabilities2 server and turtlebot capabilities
 
 Then on remote computer to start the system, on seperate terminals run,
 

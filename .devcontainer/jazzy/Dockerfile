@@ -25,10 +25,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ros-${ROS_DISTRO}-cv-bridge \
     ros-${ROS_DISTRO}-image-transport \
     ros-${ROS_DISTRO}-bondcpp \
+    ros-${ROS_DISTRO}-rviz2 \
     libportaudio2 \
     portaudio19-dev \
     python3-pyaudio \
     alsa-utils \
+    iputils-ping \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
