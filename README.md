@@ -125,34 +125,33 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
 Use the teleop node or provided Joystick to move the robot around and map the environment. Once you have mapped the environment, save the map using the slamtoolbox rviz interface on the remote computer. You can also save the map using the following command on the robot's terminal,
 
 ```bash
-ros2 run nav2_map_server map_saver_cli -f <map_name>
+ros2 run nav2_map_server map_saver_cli -f <map_name> --ros-args -p map_subscribe_transient_local:=true
+```
+as an example, to save the map as obs_lab, run the following command on the robot's terminal,
+```bash
+ros2 run nav2_map_server map_saver_cli -f ~/obs_lab --ros-args -p map_subscribe_transient_local:=true
 ```
 
 ### Using the robot and nav2 stack
 
 To run the examples, first make sure that the robot is started and start nav2 stack on the robot using the following commands on separate terminals on the robot,
 
-#### To use the Online SLAM without a prior map, run the following command on the robot's terminal,
-
-```bash
-ros2 launch turtlebot4_navigation slam.launch.py 
-```
-
-#### Or to use the prior map, run the following command on the robot's terminal,
+#### Use the prior map, run the following command on the robot's terminal,
 
 ```bash
 ros2 launch turtlebot4_navigation localization.launch.py map:=obs_lab.yaml
 ```
-
+[]
 ### Starting the nav2 stack
 
 ```bash
 ros2 launch turtlebot4_navigation nav2.launch.py
 ```
 
-Optional: If you want to visualize the robot in rviz, run the following command on remote computer's terminal,
+### Visualize the robot in rviz, and set the initial pose,
 
 ```bash
+source install/setup.bash
 ros2 launch turtlebot4_viz view_navigation.launch.py
 ```
 
@@ -175,6 +174,7 @@ ros2 launch capabilities2_server capabilities2_server.launch.py
 
 ```bash
 export OPENAI_API_KEY=
+export HUGGINGFACE_API_KEY=
 source install/setup.bash
 ros2 launch turtlebot_capabilities perception.launch.py
 ```
