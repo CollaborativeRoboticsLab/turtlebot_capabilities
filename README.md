@@ -22,9 +22,67 @@ Modify the following example plans to work with your robot and environment. Thes
 
 ## Setup
 
-Above examples depend on the capabilities2, perception, prompt_tools and fabric packages. You can clone these packages in your workspace and build them using colcon build.
+We recommend using a devcontainer to run the examples. You can modify the provided [Humble devcontainer config](./.devcontainer/humble/devcontainer.json) or [Jazzy devcontainer config](./.devcontainer/jazzy/devcontainer.json) to easily connect with your turtlebot4 by updating the following specific configuration. We use the "FASTRTPS" middleware on the Turtlebot4. The devcontainers are configured to work with ROS2 Humble and Jazzy.
+
+```json
+"containerEnv": {
+  "ROS_DOMAIN_ID": "10",
+  "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp",
+  "ROS_DISCOVERY_SERVER": "10.0.0.192:11811"
+}
+```
+
+`ROS_DOMAIN_ID` and `ROS_DISCOVERY_SERVER` should be updated to match your robot's configuration. You can find the robot's configuration by running the following command on the robot's terminal,
 
 ```bash
+echo $ROS_DOMAIN_ID
+echo $ROS_DISCOVERY_SERVER
+```
+
+## Dependencies
+
+Follow these setups only if you are **not** using a devcontainer. Install the following dependencies in your workspace to run the examples.
+
+```bash
+sudo apt update
+sudo apt install -y git \
+    curl \
+    libcurl4-openssl-dev \
+    libpoco-dev \
+    nlohmann-json3-dev \
+    ros-${ROS_DISTRO}-navigation2 \
+    ros-${ROS_DISTRO}-nav2-bringup \
+    ros-${ROS_DISTRO}-slam-toolbox \
+    ros-${ROS_DISTRO}-rqt-robot-monitor \
+    ros-${ROS_DISTRO}-irobot-create-msgs \
+    ros-${ROS_DISTRO}-irobot-create-description \
+    ros-${ROS_DISTRO}-joint-state-publisher \
+    ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO}-vision-opencv \
+    ros-${ROS_DISTRO}-cv-bridge \
+    ros-${ROS_DISTRO}-image-transport \
+    ros-${ROS_DISTRO}-bondcpp \
+    ros-${ROS_DISTRO}-rviz2 \
+    ros-${ROS_DISTRO}-teleop-twist-keyboard \
+    libportaudio2 \
+    portaudio19-dev \
+    python3-pyaudio \
+    alsa-utils \
+    iputils-ping
+```
+
+## Core packages
+
+Follow these setups only if you are **not** using a devcontainer. Above examples depend on the capabilities2, perception, prompt_tools, fabric and turtlebot_capabilities packages. You can clone these packages in your workspace and build them using colcon build.
+
+```bash
+cd ~/colcon_ws/src
+git clone https://github.com/turtlebot/turtlebot4_desktop.git -b jazzy
+git clone https://github.com/turtlebot/turtlebot4.git -b jazzy
+
+cd ~/colcon_ws
+rosdep install --from-paths src --ignore-src -r -y
+
 cd ~/colcon_ws/src
 git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b develop
 git clone https://github.com/CollaborativeRoboticsLab/fabric.git
@@ -34,6 +92,7 @@ git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git
 git clone https://github.com/CollaborativeRoboticsLab/perception.git
 git clone https://github.com/CollaborativeRoboticsLab/perception_capabilities.git
 git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git
+git clone https://github.com/CollaborativeRoboticsLab/turtlebot_capabilities.git
 
 cd ~/colcon_ws
 colcon build --symlink-install
@@ -41,13 +100,51 @@ colcon build --symlink-install
 
 ## Run
 
-### Starting the robot and nav2 stack
+### Mapping the environment
 
-To run the examples, first make sure that the robot is started and start nav2 stack on the robot using the following commands on separate terminals on the robot,
+Turtlebot4 can be used without mapping the environment, but online SLAM can be computationally intensive, so it is recommended to map the environment first. 
+
+Run the slam node on the robot after ssh into the robot and run the following command on the robot's terminal,
 
 ```bash
 ros2 launch turtlebot4_navigation slam.launch.py
-````
+```
+
+On the remote computer, run the following command to visualize the map in rviz,
+
+```bash
+ros2 launch turtlebot4_viz view_navigation.launch.py
+```
+
+If you need to use teleop twist keyboard, use the following command on the remote computer's terminal,
+
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
+```
+
+Use the teleop node or provided Joystick to move the robot around and map the environment. Once you have mapped the environment, save the map using the slamtoolbox rviz interface on the remote computer. You can also save the map using the following command on the robot's terminal,
+
+```bash
+ros2 run nav2_map_server map_saver_cli -f <map_name>
+```
+
+### Using the robot and nav2 stack
+
+To run the examples, first make sure that the robot is started and start nav2 stack on the robot using the following commands on separate terminals on the robot,
+
+#### To use the Online SLAM without a prior map, run the following command on the robot's terminal,
+
+```bash
+ros2 launch turtlebot4_navigation slam.launch.py 
+```
+
+#### Or to use the prior map, run the following command on the robot's terminal,
+
+```bash
+ros2 launch turtlebot4_navigation localization.launch.py map:=obs_lab.yaml
+```
+
+### Starting the nav2 stack
 
 ```bash
 ros2 launch turtlebot4_navigation nav2.launch.py

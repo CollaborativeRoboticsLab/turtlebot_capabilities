@@ -22,13 +22,19 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libpoco-dev \
     nlohmann-json3-dev \
     ros-${ROS_DISTRO}-navigation2 \
-    ros-${ROS_DISTRO}-geometry-msgs \
+    ros-${ROS_DISTRO}-nav2-bringup` \
+    ros-${ROS_DISTRO}-slam-toolbox \
+    ros-${ROS_DISTRO}-rqt-robot-monitor \
+    ros-${ROS_DISTRO}-irobot-create-msgs \
+    ros-${ROS_DISTRO}-irobot-create-description \
+    ros-${ROS_DISTRO}-joint-state-publisher \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
     ros-${ROS_DISTRO}-image-transport \
     ros-${ROS_DISTRO}-bondcpp \
     ros-${ROS_DISTRO}-rviz2 \
+    ros-${ROS_DISTRO}-teleop-twist-keyboard \
     libportaudio2 \
     portaudio19-dev \
     python3-pyaudio \
@@ -48,8 +54,18 @@ RUN rosdep update
 # Source the ROS setup file
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 
-# make sure folders exist
-WORKDIR /home/$USERNAME/colcon_ws/src 
+## Install turtlebot4 dependencies
+WORKDIR /home/$USERNAME/colcon_ws/src
+
+RUN git clone https://github.com/turtlebot/turtlebot4_desktop.git -b humble
+RUN git clone https://github.com/turtlebot/turtlebot4.git -b humble 
+
+WORKDIR /home/$USERNAME/colcon_ws
+
+RUN rosdep install --from-paths src --ignore-src -r -y
+
+## Install capabilities and related packages
+WORKDIR /home/$USERNAME/colcon_ws/src
 
 RUN git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b develop
 # RUN git clone --recurse-submodules https://github.com/CollaborativeRoboticsLab/prompt_tools.git
