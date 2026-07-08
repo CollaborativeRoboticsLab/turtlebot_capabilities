@@ -113,6 +113,7 @@ ros2 launch turtlebot4_navigation slam.launch.py
 On the remote computer, run the following command to visualize the map in rviz,
 
 ```bash
+source install/setup.bash
 ros2 launch turtlebot4_viz view_navigation.launch.py
 ```
 
@@ -141,7 +142,7 @@ To run the examples, first make sure that the robot is started and start nav2 st
 ```bash
 ros2 launch turtlebot4_navigation localization.launch.py map:=obs_lab.yaml
 ```
-[]
+
 ### Starting the nav2 stack
 
 ```bash
