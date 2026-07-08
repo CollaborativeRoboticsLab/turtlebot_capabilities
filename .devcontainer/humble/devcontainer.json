@@ -6,7 +6,7 @@
     "DISPLAY": "${localEnv:DISPLAY}",    
     "ROS_DOMAIN_ID": "10",
     "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp",
-    "ROS_DISCOVERY_SERVER": "10.42.1.192:11811"
+    "ROS_DISCOVERY_SERVER": "10.42.0.1:11811"
   },
   "runArgs": [
     "--privileged",
