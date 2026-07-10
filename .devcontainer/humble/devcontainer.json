@@ -4,9 +4,9 @@
   "remoteUser": "ubuntu",
   "containerEnv": {
     "DISPLAY": "${localEnv:DISPLAY}",    
-    "ROS_DOMAIN_ID": "10",
+    "ROS_DOMAIN_ID": "7",
     "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp",
-    "ROS_DISCOVERY_SERVER": "10.42.0.1:11811"
+    "ROS_DISCOVERY_SERVER": "10.114.124.117:11811"
   },
   "runArgs": [
     "--privileged",
