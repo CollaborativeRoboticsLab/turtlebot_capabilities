@@ -11,13 +11,13 @@ Modify the following example plans to work with your robot and environment. Thes
 
 | Example | Description |
 | ---     | ---         |
-| [turtlebot_1.xml](./plans/turtlebot_1.xml) | In this example (0.5,2) point is reachable. And the robot moves to that point. |
-| [turtlebot_2.xml](./plans/turtlebot_2.xml) | In this example, (0.5,2) (1,2) (2,0.5) (-2,0) points are reachable. And the robot moves through those points. |
-| [turtlebot_3.xml](./plans/turtlebot_3.xml) | In this example, (0.5,2) (1,2) (-2,0) are reachable, (2,-3) point is not reachable. Because of this, the robot moves to the (0,0.5) as a recovery action. |
-| [turtlebot_4.xml](./plans/turtlebot_4.xml) | In this example, (0.5,2) (1,2) (2,1) are reachable, (2,-3), (0, -3) points are not reachable.Because of this, the robot moves to the (0,0.5) as a recovery action. (1,2) (2,1) points also have recovery actions linked, but they are not triggered as the point is accessible. |
-| [turtlebot_5.xml](./plans/turtlebot_5.xml) | In this example The LLM would need to generate a plan that moves the robot 1 meter forward, turn left and take a picture. And then try to describe what it sees. |
-| [turtlebot_6.xml](./plans/turtlebot_6.xml) | In this example, we define two points as point A and B as world information. The LLM would need to generate a plan or more that moves the robot To the point A and check for a person using vision or audio, then ask for the name. Then it should come back to the origin and repeat the name. | 
-| [turtlebot_7.xml](./plans/turtlebot_7.xml) | In this example, we define two points as point A and B as world information. The LLM would need to generate a plan or more that moves the robot To the point A and check for a person using vision or audio, then ask for the name. Then it should come back to the origin and repeat the name. If the person is not there, the robot is supposed to Go to point B instead. | 
+| [turtlebot_1.xml](./plans/turtlebot_1.xml) | Moves the robot to the waypoint at (-2.5, 2.0). |
+| [turtlebot_2.xml](./plans/turtlebot_2.xml) | Moves the robot through five waypoints: (0.5, 2.0), (1.0, 2.0), (2.0, 0.5), (2.0, -1.0), and (-2.0, 0.0). |
+| [turtlebot_3.xml](./plans/turtlebot_3.xml) | Moves through several waypoints and defines a recovery branch that returns to (0.0, 0.5) if the (2.0, -3.0) waypoint fails. |
+| [turtlebot_4.xml](./plans/turtlebot_4.xml) | Moves through multiple waypoints with recovery branches attached after several steps, including a recovery path through (0.0, -3.0) and back to (0.0, 0.5) if the (2.0, -3.0) step fails. |
+| [turtlebot_5.xml](./plans/turtlebot_5.xml) | Prompts the LLM to generate a plan that moves the robot one meter forward and then describe what it sees in speech. |
+| [turtlebot_6.xml](./plans/turtlebot_6.xml) | Provides world information for points A and B, then prompts the LLM to generate a plan that goes to point A, asks for a person's name, returns to the origin, and repeats the name. | 
+| [turtlebot_7.xml](./plans/turtlebot_7.xml) | Provides world information for points A and B, then prompts the LLM to generate a plan that goes to point A, asks for a person's name if someone is there, returns to the origin to repeat it, and otherwise moves to point B. | 
 
 
 ## Setup
