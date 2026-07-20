@@ -15,8 +15,8 @@ def generate_launch_description():
 
     # create perception node
     perception_server = Node(
-        package='perception',
-        executable='perception_node',
+        package='fp_perception',
+        executable='fp_perception_node',
         name='perception_node',
         parameters=[perception_config],
         output='screen',

@@ -4,7 +4,7 @@ Provides execution plans for Turtlebot robots. These has been tested with a Turt
 
 ## Examples
 
-Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/perception](https://github.com/CollaborativeRoboticsLab/perception),  [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools) and [CollaborativeRoboticsLab/fabric](https://github.com/CollaborativeRoboticsLab/fabric).
+Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/fp_perception](https://github.com/CollaborativeRoboticsLab/fp_perception), [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools) and [CollaborativeRoboticsLab/fabric](https://github.com/CollaborativeRoboticsLab/fabric).
 
 Modify the following example plans to work with your robot and environment. These plans are designed to work with our lab's setup and might need modifications to work with your robot or environment.
 
@@ -73,7 +73,7 @@ sudo apt install -y git \
 
 ## Core packages
 
-Follow these setups only if you are **not** using a devcontainer. Above examples depend on the capabilities2, perception, prompt_tools, fabric and turtlebot_capabilities packages. You can clone these packages in your workspace and build them using colcon build.
+Follow these setups only if you are **not** using a devcontainer. Above examples depend on the capabilities2, fp_perception, prompt_tools, fabric and turtlebot_capabilities packages. You can clone these packages in your workspace and build them using colcon build.
 
 ```bash
 cd ~/colcon_ws/src
@@ -89,8 +89,8 @@ git clone https://github.com/CollaborativeRoboticsLab/fabric.git
 git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
 git clone https://github.com/CollaborativeRoboticsLab/prompt_tools.git
 git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git
-git clone https://github.com/CollaborativeRoboticsLab/perception.git
-git clone https://github.com/CollaborativeRoboticsLab/perception_capabilities.git
+git clone https://github.com/CollaborativeRoboticsLab/fp_perception.git
+git clone https://github.com/CollaborativeRoboticsLab/fp_perception_capabilities.git
 git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git
 git clone https://github.com/CollaborativeRoboticsLab/turtlebot_capabilities.git
 
