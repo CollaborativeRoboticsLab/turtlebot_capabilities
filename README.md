@@ -18,6 +18,7 @@ Modify the following example plans to work with your robot and environment. Thes
 | [turtlebot_5.xml](./plans/turtlebot_5.xml) | Prompts the LLM to generate a plan that moves the robot one meter forward and then describe what it sees in speech. |
 | [turtlebot_6.xml](./plans/turtlebot_6.xml) | Provides world information for points A and B, then prompts the LLM to generate a plan that goes to point A, asks for a person's name, returns to the origin, and repeats the name. | 
 | [turtlebot_7.xml](./plans/turtlebot_7.xml) | Provides world information for points A and B, then prompts the LLM to generate a plan that goes to point A, asks for a person's name if someone is there, returns to the origin to repeat it, and otherwise moves to point B. | 
+| [turtlebot_7a.xml](./plans/turtlebot_7a.xml) | Same as task 7 but use vision to detect the person. |
 
 
 ## Setup
@@ -140,13 +141,7 @@ To run the examples, first make sure that the robot is started and start nav2 st
 #### Use the prior map, run the following command on the robot's terminal,
 
 ```bash
-ros2 launch turtlebot4_navigation localization.launch.py map:=obs_lab.yaml
-```
-
-### Starting the nav2 stack
-
-```bash
-ros2 launch turtlebot4_navigation nav2.launch.py
+ros2 launch turtlebot4_navigation localization.launch.py map:=cr_lab.yaml
 ```
 
 ### Visualize the robot in rviz, and set the initial pose,
@@ -154,6 +149,14 @@ ros2 launch turtlebot4_navigation nav2.launch.py
 ```bash
 source install/setup.bash
 ros2 launch turtlebot4_viz view_navigation.launch.py
+```
+
+### Starting the nav2 stack
+
+Make sure to set the initial pose of the robot in rviz before starting the nav2 stack. Otherwise nav2 stack will not start properly. Once the initial pose is set, run the following command on the host computers terminal to start the nav2 stack,
+
+```bash
+ros2 launch turtlebot4_navigation nav2.launch.py
 ```
 
 > Note: Due to the interaction between CLI tools such as `ros2 topic ...`, `ros2 node ...` and rmw_fastrtps_cpp which we use in this devcontainer to communicate with the robot, it is recommended to use the `export ROS_SUPER_CLIENT=1` environment variable on the remote computer to avoid any issues with the CLI tools. Don't add the `export ROS_SUPER_CLIENT=1` to your bashrc, as it can cause issues with normal ROS2 nodes execution under rmw_fastrtps_cpp. Only use it when you are using CLI tools to communicate with the robot as shown below.
