@@ -1,19 +1,20 @@
-import os
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
-from launch_ros.actions import ComposableNodeContainer
-from launch_ros.descriptions import ComposableNode
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from ament_index_python.packages import get_package_share_directory
+from launch.substitutions import LaunchConfiguration
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    perception_config = LaunchConfiguration('perception_config')
 
-    # load config file
-    perception_config = os.path.join(get_package_share_directory('turtlebot_capabilities'), 'config', 'perception_config.yaml')
+    declare_perception_config = DeclareLaunchArgument(
+        'perception_config',
+        default_value=PathJoinSubstitution([FindPackageShare('turtlebot_capabilities'), 'config', 'perception_config.yaml']),
+        description='Absolute path to the TurtleBot perception configuration file'
+    )
 
-    # create perception node
     perception_server = Node(
         package='fp_perception',
         executable='fp_perception_node',
@@ -23,9 +24,8 @@ def generate_launch_description():
         arguments=['--ros-args', '--log-level', 'info']
     )
     
-    # create launch description
-    # return
     return LaunchDescription([
+        declare_perception_config,
         perception_server,
     ])
 

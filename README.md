@@ -193,7 +193,7 @@ ros2 launch prompt_bridge prompt_bridge.launch.py
 
 ```bash
 source install/setup.bash
-ros2 launch turtlebot_capabilities fabric.launch.py filename:=turtlebot_1.xml
+ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml
 ```
 
 Change `filename:=turtlebot_1.xml` to match the correct plan
