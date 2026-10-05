@@ -197,3 +197,25 @@ ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml
 ```
 
 Change `filename:=turtlebot_1.xml` to match the correct plan
+
+## Using Gazebo Harmonic Simulations
+
+Multiple simulation scenarios are maintained in the separate `turtlebot4_simulations` repository. From the root of a ROS 2 workspace containing both repositories, build both packages and source the workspace:
+
+```bash
+colcon build
+source install/setup.bash
+```
+
+Start the standard TurtleBot4 in the maze:
+
+```bash
+ros2 launch turtlebot4_maze_sim turtlebot4_maze.launch.py
+```
+
+To use the Lite model or override the entity and world names:
+
+```bash
+ros2 launch turtlebot4_maze_sim turtlebot4_maze.launch.py model:=lite robot_name:=turtlebot4 world_name:=maze_world
+```
+

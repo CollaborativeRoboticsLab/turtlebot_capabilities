@@ -32,6 +32,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ros-${ROS_DISTRO}-bondcpp \
     ros-${ROS_DISTRO}-rviz2 \
     ros-${ROS_DISTRO}-teleop-twist-keyboard \
+    ros-${ROS_DISTRO}-ros-gz \
+    ros-${ROS_DISTRO}-gz-ros2-control \
     libportaudio2 \
     portaudio19-dev \
     python3-pyaudio \
