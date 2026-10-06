@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ros-${ROS_DISTRO}-irobot-create-description \
     ros-${ROS_DISTRO}-joint-state-publisher \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
     ros-${ROS_DISTRO}-image-transport \
@@ -57,12 +58,11 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 WORKDIR /home/$USERNAME/colcon_ws/src
 
 RUN git clone https://github.com/turtlebot/turtlebot4_desktop.git -b jazzy
-RUN git clone https://github.com/turtlebot/turtlebot4.git -b jazzy
+RUN git clone https://github.com/CollaborativeRoboticsLab/turtlebot4 -b jazzy
 
 WORKDIR /home/$USERNAME/colcon_ws
 
 RUN rosdep install --from-paths src --ignore-src -r -y
-
 
 ## Install capabilities and related packages
 WORKDIR /home/$USERNAME/colcon_ws/src
