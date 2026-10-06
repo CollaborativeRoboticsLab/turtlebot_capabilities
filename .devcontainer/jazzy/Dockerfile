@@ -75,6 +75,7 @@ RUN git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.gi
 RUN git clone https://github.com/CollaborativeRoboticsLab/fp_perception.git -b experience-integration
 RUN git clone https://github.com/CollaborativeRoboticsLab/fp_perception_capabilities.git -b experience-integration
 RUN git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git -b experience-integration
+RUN git clone https://github.com/CollaborativeRoboticsLab/turtlebot4_simulations.git
 # git clone https://github.com/CollaborativeRoboticsLab/supervisor.git
 # git clone https://github.com/CollaborativeRoboticsLab/experience.git
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_experience.git

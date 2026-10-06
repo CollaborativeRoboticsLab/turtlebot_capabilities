@@ -40,64 +40,7 @@ echo $ROS_DOMAIN_ID
 echo $ROS_DISCOVERY_SERVER
 ```
 
-## Dependencies
-
-Follow these setups only if you are **not** using a devcontainer. Install the following dependencies in your workspace to run the examples.
-
-```bash
-sudo apt update
-sudo apt install -y git \
-    curl \
-    libcurl4-openssl-dev \
-    libpoco-dev \
-    nlohmann-json3-dev \
-    ros-${ROS_DISTRO}-navigation2 \
-    ros-${ROS_DISTRO}-nav2-bringup \
-    ros-${ROS_DISTRO}-slam-toolbox \
-    ros-${ROS_DISTRO}-rqt-robot-monitor \
-    ros-${ROS_DISTRO}-irobot-create-msgs \
-    ros-${ROS_DISTRO}-irobot-create-description \
-    ros-${ROS_DISTRO}-joint-state-publisher \
-    ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
-    ros-${ROS_DISTRO}-vision-opencv \
-    ros-${ROS_DISTRO}-cv-bridge \
-    ros-${ROS_DISTRO}-image-transport \
-    ros-${ROS_DISTRO}-bondcpp \
-    ros-${ROS_DISTRO}-rviz2 \
-    ros-${ROS_DISTRO}-teleop-twist-keyboard \
-    libportaudio2 \
-    portaudio19-dev \
-    python3-pyaudio \
-    alsa-utils \
-    iputils-ping
-```
-
-## Core packages
-
-Follow these setups only if you are **not** using a devcontainer. Above examples depend on the capabilities2, fp_perception, prompt_tools, fabric and turtlebot_capabilities packages. You can clone these packages in your workspace and build them using colcon build.
-
-```bash
-cd ~/colcon_ws/src
-git clone https://github.com/turtlebot/turtlebot4_desktop.git -b jazzy
-git clone https://github.com/turtlebot/turtlebot4.git -b jazzy
-
-cd ~/colcon_ws
-rosdep install --from-paths src --ignore-src -r -y
-
-cd ~/colcon_ws/src
-git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b develop
-git clone https://github.com/CollaborativeRoboticsLab/fabric.git
-git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
-git clone https://github.com/CollaborativeRoboticsLab/prompt_tools.git
-git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git
-git clone https://github.com/CollaborativeRoboticsLab/fp_perception.git
-git clone https://github.com/CollaborativeRoboticsLab/fp_perception_capabilities.git
-git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git
-git clone https://github.com/CollaborativeRoboticsLab/turtlebot_capabilities.git
-
-cd ~/colcon_ws
-colcon build --symlink-install
-```
+> If you are not using a devcontainer, follow the [instructions here](./docs/direct_setup.md).
 
 ## Run
 
@@ -108,6 +51,7 @@ Turtlebot4 can be used without mapping the environment, but online SLAM can be c
 Run the slam node on the robot after ssh into the robot and run the following command on the robot's terminal,
 
 ```bash
+source install/setup.bash
 ros2 launch turtlebot4_navigation slam.launch.py
 ```
 
@@ -173,27 +117,12 @@ Then on remote computer to start the system, on seperate terminals run,
 
 ```bash
 source install/setup.bash
-ros2 launch capabilities2_server capabilities2_server.launch.py
-```
-
-```bash
-export OPENAI_API_KEY=
-export HUGGINGFACE_API_KEY=
-source install/setup.bash
 ros2 launch turtlebot_capabilities perception.launch.py
 ```
 
-> Note, to accomodate the sensor setup/topics in the turtlebot4, we use a custom [perception config file](./config/perception_config.yaml) seperate from the default config found on the perception package. You can modify the config file to match your robot's sensor setup.
-
-```bash
-export OPENAI_API_KEY=
-source install/setup.bash
-ros2 launch prompt_bridge prompt_bridge.launch.py
-```
-
 ```bash
 source install/setup.bash
-ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml
+ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml start_experience_stack:=true
 ```
 
 Change `filename:=turtlebot_1.xml` to match the correct plan
@@ -202,20 +131,10 @@ Change `filename:=turtlebot_1.xml` to match the correct plan
 
 Multiple simulation scenarios are maintained in the separate `turtlebot4_simulations` repository. From the root of a ROS 2 workspace containing both repositories, build both packages and source the workspace:
 
-```bash
-colcon build
-source install/setup.bash
-```
-
 Start the standard TurtleBot4 in the maze:
 
 ```bash
+source install/setup.bash
 ros2 launch turtlebot4_maze_sim turtlebot4_maze.launch.py
-```
-
-To use the Lite model or override the entity and world names:
-
-```bash
-ros2 launch turtlebot4_maze_sim turtlebot4_maze.launch.py model:=lite robot_name:=turtlebot4 world_name:=maze_world
 ```
 
