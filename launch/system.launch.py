@@ -28,7 +28,7 @@ def generate_launch_description():
 
     declare_start_experience_stack = DeclareLaunchArgument(
         'start_experience_stack',
-        default_value='true',
+        default_value='false',
         description='Whether to start the experience and supervisor stack alongside fabric'
     )
 

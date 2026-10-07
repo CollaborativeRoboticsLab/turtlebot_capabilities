@@ -12,7 +12,7 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY launch plans config
+install(DIRECTORY launch plans config semantic_interfaces
   DESTINATION share/${PROJECT_NAME}
 )
 

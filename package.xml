@@ -28,5 +28,9 @@
 
   <export>
     <build_type>ament_cmake</build_type>
+
+    <semantic_capability_interface>
+      semantic_interfaces/TurtlebotWaypointRunner.yaml
+    </semantic_capability_interface>
   </export>
 </package>

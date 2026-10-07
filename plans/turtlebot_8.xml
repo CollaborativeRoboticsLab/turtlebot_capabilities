@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Plan>
-    <Control type="sequential" >
+    <Control type="sequential" name="describe_scene_after_move">
         <Runner interface="nav2_capabilities/RobotPoseRunner" provider="nav2_capabilities/RobotPoseRunner" map="map" odom="odom" robot="base_link"/>
         <Runner interface="prompt_capabilities/PromptPoseRunner" provider="prompt_capabilities/PromptPoseRunner" flush="false" uuid="prompt-test-uuid"/>
-        <Runner interface="fabric_capabilities/FabricGeneratePlanRunner" provider="fabric_capabilities/FabricGeneratePlanRunner" flush="true" uuid="prompt-test-uuid" task="move to (1.0, -0.5), (1.5, 2.0), (-1.5, 0.0), (0.0, -1.0) in order. If (1.5, 2.0) cannot be reached, move to (0.0, 1.5)" />
+        <Runner interface="fabric_capabilities/FabricGeneratePlanRunner" provider="fabric_capabilities/FabricGeneratePlanRunner" flush="true" uuid="prompt-test-uuid" task="move one meter forward and describe what you see in speech" />
     </Control>
 </Plan>

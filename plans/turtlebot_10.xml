@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Plan>
+    <Control type="sequential" name="branch_between_points_a_and_b">
+        <Runner interface="prompt_capabilities/PromptTextRunner" provider="prompt_capabilities/PromptTextRunner" flush="false"  uuid="prompt-test-uuid" text="World information: Point A is coordinates (1.5, 0.0), Point B is coordinates (-1.5, 0.0)"/>
+        <Runner interface="nav2_capabilities/RobotPoseRunner" provider="nav2_capabilities/RobotPoseRunner" map="map" odom="odom" robot="base_link"/>
+        <Runner interface="prompt_capabilities/PromptPoseRunner" provider="prompt_capabilities/PromptPoseRunner" flush="false" uuid="prompt-test-uuid"/>
+        <Runner interface="fabric_capabilities/FabricGeneratePlanRunner" provider="fabric_capabilities/FabricGeneratePlanRunner" flush="true" uuid="prompt-test-uuid" task="World information: Point A is coordinates (1.5, 0.0), Point B is coordinates (-1.5, 0.0). Go to point A. If there is a person there, ask the person's name, return to the origin, and repeat it. If there is no person at point A, move to point B." />
+    </Control>
+</Plan>
