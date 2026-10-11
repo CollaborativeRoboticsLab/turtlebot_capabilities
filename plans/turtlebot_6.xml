@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Plan>
     <Control type="sequential" >
-        <Runner interface="nav2_capabilities/RobotPoseRunner" provider="nav2_capabilities/RobotPoseRunner" map="map" odom="odom" robot="base_link"/>
+        <Runner interface="turtlebot_capabilities/RobotPoseRunner" provider="nav2_capabilities/RobotPoseRunner" map="map" odom="odom" robot="base_link"/>
         <Runner interface="prompt_capabilities/PromptPoseRunner" provider="prompt_capabilities/PromptPoseRunner" flush="false" uuid="prompt-test-uuid"/>
-        <Runner interface="fabric_capabilities/FabricGeneratePlanRunner" provider="fabric_capabilities/FabricGeneratePlanRunner" flush="true" uuid="prompt-test-uuid" task="move to (1.0, -0.5), (0.0, 1.5), (-1.5, 0.0), (0.0, -1.0) in order" />
+        <Runner interface="fabric_capabilities/FabricGeneratePlanRunner" provider="fabric_capabilities/FabricGeneratePlanRunner" flush="true" uuid="prompt-test-uuid" task="move to (0.0, -2.5), (0.0, 3.5), (-3.5, -3.0), (0.0, 0.0) in order" />
     </Control>
 </Plan>
