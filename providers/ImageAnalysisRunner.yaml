@@ -1,0 +1,32 @@
+%YAML 1.1
+---
+name: ImageAnalysisRunner
+spec_type: provider
+spec_version: 1.2
+description: "TurtleBot-specific provider for image analysis requests using the TurtleBot perception stack."
+implements: fp_perception_capabilities/ImageAnalysisRunner
+runner: capabilities2_runner::ImageAnalysisRunner
+depends_on:
+  "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
+    provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
+
+definition:
+  command: "<Runner interface=fp_perception_capabilities/ImageAnalysisRunner provider=turtlebot_capabilities/ImageAnalysisRunner prompt='$prompt' use_device='$use_device' />"
+  configuration_parameters:
+    - name: prompt
+      type: string
+      default: ""
+      semantic_key: perception.image_analysis.prompt
+      description: "The natural-language instruction describing what information should be extracted from the image."
+    - name: use_device
+      type: boolean
+      optional: true
+      default: true
+      semantic_key: perception.image_analysis.use_device
+      description: "Whether the runner should request live device vision instead of relying on previously supplied image data. This needs to be true if the runner should capture a new image from the device camera."
+  runtime_parameters:
+    output:
+      - name: text
+        type: string
+        semantic_key: perception.image_analysis.text
+        description: "The textual analysis result produced from the image and prompt."

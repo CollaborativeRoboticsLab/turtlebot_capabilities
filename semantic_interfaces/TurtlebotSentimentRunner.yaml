@@ -1,0 +1,10 @@
+%YAML 1.1
+---
+name: TurtlebotSentimentRunner
+spec_type: semantic_interface
+spec_version: 1.2
+description: "TurtleBot-specific semantic wrapper for perception sentiment analysis that remaps the service endpoint to the TurtleBot perception stack."
+redefines: fp_perception_capabilities/SentimentRunner
+remappings:
+  services:
+    "/perception/sentiment_analysis": "perception/sentiment_analysis"

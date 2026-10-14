@@ -1,0 +1,37 @@
+%YAML 1.1
+---
+name: TranscribeRunner
+spec_type: provider
+spec_version: 1.2
+description: "TurtleBot-specific provider for audio transcription requests using the TurtleBot perception stack."
+implements: fp_perception_capabilities/TranscribeRunner
+runner: capabilities2_runner::TranscribeRunner
+depends_on:
+  "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
+    provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
+
+definition:
+  command: "<Runner interface=fp_perception_capabilities/TranscribeRunner provider=turtlebot_capabilities/TranscribeRunner use_device='$value' audio_request_window='$value' />"
+  configuration_parameters:
+    - name: use_device
+      type: boolean
+      optional: true
+      default: true
+      semantic_key: perception.transcription.use_device
+      description: "Whether the runner should capture audio directly from the device before transcription."
+    - name: audio_request_window
+      type: int
+      optional: true
+      default: 10
+      semantic_key: perception.transcription.audio_request_window
+      description: "The duration, in seconds, of the requested audio capture window."
+  runtime_parameters:
+    output:
+      - name: text
+        type: string
+        semantic_key: perception.transcription.text
+        description: "The transcribed text returned by the perception service."
+      - name: success
+        type: boolean
+        semantic_key: perception.transcription.success
+        description: "Whether transcription completed successfully."

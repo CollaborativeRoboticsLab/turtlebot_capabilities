@@ -22,9 +22,11 @@
   <exec_depend>fabric_capabilities</exec_depend>
   <exec_depend>fabric_server</exec_depend>
   <exec_depend>fp_perception</exec_depend>
+  <exec_depend>fp_perception_capabilities</exec_depend>
   <exec_depend>nav2_capabilities</exec_depend>
   <exec_depend>prompt_bridge</exec_depend>
   <exec_depend>prompt_capabilities</exec_depend>
+  <exec_depend>turtlebot4_navigation</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
@@ -32,5 +34,61 @@
     <semantic_capability_interface>
       semantic_interfaces/TurtlebotWaypointRunner.yaml
     </semantic_capability_interface>
+
+    <semantic_capability_interface>
+      semantic_interfaces/TurtlebotRobotposeRunner.yaml
+    </semantic_capability_interface>
+
+    <semantic_capability_interface>
+      semantic_interfaces/TurtlebotTranscribeRunner.yaml
+    </semantic_capability_interface>
+
+    <semantic_capability_interface>
+      semantic_interfaces/TurtlebotSpeechRunner.yaml
+    </semantic_capability_interface>
+
+    <semantic_capability_interface>
+      semantic_interfaces/TurtlebotSentimentRunner.yaml
+    </semantic_capability_interface>
+
+    <semantic_capability_interface>
+      semantic_interfaces/TurtlebotImageAnalysisRunner.yaml
+    </semantic_capability_interface>
+
+    <capability_interface>
+      interfaces/TurtlebotSlamLaunchRunner.yaml
+    </capability_interface>
+
+    <capability_interface>
+      interfaces/TurtlebotPerceptionLaunchRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/TurtlebotSlamLaunchRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
+      providers/TurtlebotNav2LaunchRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
+      providers/TurtlebotPerceptionLaunchRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
+      providers/TranscribeRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
+      providers/SpeechRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
+      providers/SentimentRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
+      providers/ImageAnalysisRunner.yaml
+    </capability_provider>
   </export>
 </package>

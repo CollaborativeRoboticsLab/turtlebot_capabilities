@@ -1,0 +1,47 @@
+%YAML 1.1
+---
+name: SentimentRunner
+spec_type: provider
+spec_version: 1.2
+description: "TurtleBot-specific provider for sentiment analysis requests using the TurtleBot perception stack."
+implements: fp_perception_capabilities/SentimentRunner
+runner: capabilities2_runner::SentimentRunner
+depends_on:
+  "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
+    provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
+
+definition:
+  command: "<Runner interface=fp_perception_capabilities/SentimentRunner provider=turtlebot_capabilities/SentimentRunner text='$value' use_device='$value' audio_request_window='$value' />"
+  configuration_parameters:
+    - name: text
+      type: string
+      optional: true
+      default: ""
+      semantic_key: perception.sentiment_analysis.text
+      description: "The text to analyze for sentiment. This can be omitted when live audio should be captured instead."
+    - name: use_device
+      type: boolean
+      optional: true
+      default: false
+      semantic_key: perception.sentiment_analysis.use_device
+      description: "Whether the runner should request live device audio for sentiment analysis. If analyzing text, this should be 'false'."
+    - name: audio_request_window
+      type: int
+      optional: true
+      default: 0
+      semantic_key: perception.sentiment_analysis.audio_request_window
+      description: "The duration, in seconds, of audio to use when use_device is enabled and live audio is captured for sentiment analysis. If analyzing text and use_device is false, this will be ignored."
+  runtime_parameters:
+    output:
+      - name: text
+        type: string
+        semantic_key: perception.sentiment_analysis.text
+        description: "The sentiment label produced by the perception service."
+      - name: score
+        type: double
+        semantic_key: perception.sentiment_analysis.score
+        description: "The confidence score associated with the sentiment label."
+      - name: analyzed_text
+        type: string
+        semantic_key: perception.sentiment_analysis.analyzed_text
+        description: "The text that was ultimately analyzed by the sentiment service."

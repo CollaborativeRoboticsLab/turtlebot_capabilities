@@ -1,0 +1,30 @@
+%YAML 1.1
+---
+name: TurtlebotPerceptionLaunchRunner
+spec_version: 1.2
+spec_type: interface
+description: "Launches the TurtleBot-specific perception stack and exposes the TurtleBot camera, microphone, speaker, and perception service endpoints."
+interface:
+  topics:
+    "perception/microphone":
+      type: "audio_common_msgs/msg/AudioData"
+      description: "Audio topic published from the TurtleBot perception microphone pipeline."
+    "perception/speaker":
+      type: "audio_common_msgs/msg/AudioData"
+      description: "Audio topic consumed by the TurtleBot perception speaker pipeline."
+    "perception/camera":
+      type: "sensor_msgs/msg/Image"
+      description: "Camera topic published by the TurtleBot perception stack for image analysis."
+  services:
+    "perception/transcription":
+      type: "fp_perception_msgs::srv::PerceptionTranscribe"
+      description: "TurtleBot-specific transcription service endpoint."
+    "perception/speech":
+      type: "fp_perception_msgs::srv::PerceptionSpeech"
+      description: "TurtleBot-specific speech synthesis service endpoint."
+    "perception/sentiment_analysis":
+      type: "fp_perception_msgs::srv::PerceptionSentiment"
+      description: "TurtleBot-specific sentiment analysis service endpoint."
+    "perception/image_analysis":
+      type: "fp_perception_msgs::srv::PerceptionImageAnalysis"
+      description: "TurtleBot-specific image analysis service endpoint."

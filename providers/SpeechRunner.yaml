@@ -1,0 +1,51 @@
+%YAML 1.1
+---
+name: SpeechRunner
+spec_type: provider
+spec_version: 1.2
+description: "TurtleBot-specific provider for speech synthesis requests using the TurtleBot perception stack."
+implements: fp_perception_capabilities/SpeechRunner
+runner: capabilities2_runner::SpeechRunner
+depends_on:
+  "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
+    provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
+
+definition:
+  command: "<Runner interface=fp_perception_capabilities/SpeechRunner provider=turtlebot_capabilities/SpeechRunner use_device='$value' text='$value' voice='$value' instructions='$value' />"
+  configuration_parameters:
+    - name: text
+      type: string
+      semantic_key: perception.speech.text
+      description: "The text content to synthesize into speech."
+    - name: use_device
+      type: boolean
+      optional: true
+      default: true
+      semantic_key: perception.speech.use_device
+      description: "Whether audio should be played back through the device audio interface."
+    - name: voice
+      type: string
+      optional: true
+      default: ""
+      semantic_key: perception.speech.voice
+      description: "Voice selection for the speech synthesis backend. If not specified, the default voice will be used."
+    - name: instructions
+      type: string
+      optional: true
+      default: ""
+      semantic_key: perception.speech.instructions
+      description: "Optional synthesis instructions that further guide the speech backend output."
+  runtime_parameters:
+    input:
+      - name: text
+        type: string
+        semantic_key: perception.speech.text
+        description: "The text content to synthesize into speech."
+        required: true
+        satisfiable_from: [upstream, configuration]
+        fallback_parameter: param1
+    output:
+      - name: success
+        type: boolean
+        semantic_key: perception.speech.success
+        description: "Whether speech synthesis completed successfully."

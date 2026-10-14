@@ -3,10 +3,6 @@
 name: TurtlebotWaypointRunner
 spec_type: semantic_interface
 spec_version: 1.2
-description: "TurtleBot-specific semantic wrapper for the Nav2 waypoint capability that remaps the
-              navigation action into the TurtleBot namespace used by the simulation and robot launches."
+description: "TurtleBot-specific semantic wrapper for the Nav2 waypoint capability that matches the
+              current simulation launches, which expose the navigation action on the standard global topic names by default."
 redefines: nav2_capabilities/WaypointRunner
-global_namespace: turtlebot4
-remappings:
-  actions:
-    "/navigate_to_pose": "/turtlebot4/navigate_to_pose"

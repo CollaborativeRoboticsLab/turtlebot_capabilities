@@ -130,11 +130,18 @@ ros2 launch turtlebot4_maze_sim turtlebot4_maze_small.launch.py
 
 > Refer to the [turtlebot4_simulations README](https://github.com/CollaborativeRoboticsLab/turtlebot4_simulations) for more information on supported simulation scenarios.
 
-Start the control stack
+Start SLAM and Nav2
 
 ```bash
 source install/setup.bash
-ros2 launch turtlebot4_maze_sim sim_navigation.launch.py
+ros2 launch turtlebot4_navigation slam.launch.py use_sim_time:=true
+```
+
+In a second terminal:
+
+```bash
+source install/setup.bash
+ros2 launch turtlebot4_navigation nav2.launch.py use_sim_time:=true
 ```
 
 ### Starting the Fabric and turtlebot capabilities

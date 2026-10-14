@@ -1,0 +1,17 @@
+%YAML 1.1
+---
+name: TurtlebotNav2LaunchRunner
+spec_type: provider
+spec_version: 1.2
+description: "Launch provider that starts TurtleBot4 Nav2 using the TurtleBot-specific navigation launch file."
+implements: nav2_capabilities/Nav2LaunchRunner
+runner: turtlebot4_navigation/nav2.launch.py
+depends_on:
+  "turtlebot_capabilities/TurtlebotSlamLaunchRunner":
+    provider: "turtlebot_capabilities/TurtlebotSlamLaunchRunner"
+definition:
+  launch_parameters:
+    - key: use_sim_time
+      value: "true"
+    - key: namespace
+      value: ""

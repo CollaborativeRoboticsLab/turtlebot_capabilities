@@ -1,0 +1,16 @@
+%YAML 1.1
+---
+name: TurtlebotSlamLaunchRunner
+spec_type: provider
+spec_version: 1.2
+description: "Launch provider that starts TurtleBot4 SLAM using the TurtleBot-specific slam launch file."
+implements: turtlebot_capabilities/TurtlebotSlamLaunchRunner
+runner: turtlebot4_navigation/slam.launch.py
+definition:
+  launch_parameters:
+    - key: use_sim_time
+      value: "true"
+    - key: sync
+      value: "true"
+    - key: autostart
+      value: "true"

@@ -1,0 +1,8 @@
+%YAML 1.1
+---
+name: TurtlebotPerceptionLaunchRunner
+spec_type: provider
+spec_version: 1.2
+description: "Launch provider that starts the TurtleBot-specific perception stack wrapper."
+implements: turtlebot_capabilities/TurtlebotPerceptionLaunchRunner
+runner: turtlebot_capabilities/perception.launch.py

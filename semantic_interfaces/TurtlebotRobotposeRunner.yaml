@@ -3,7 +3,6 @@
 name: TurtlebotRobotposeRunner
 spec_type: semantic_interface
 spec_version: 1.2
-description: "TurtleBot-specific semantic wrapper for the Nav2 robot pose capability that applies the
-              TurtleBot TF namespace used by the simulation and robot launches."
+description: "TurtleBot-specific semantic wrapper for the Nav2 robot pose capability that matches the
+              current simulation launches, which expose the standard global map, odom, and base_link frame names by default."
 redefines: nav2_capabilities/RobotPoseRunner
-global_namespace: turtlebot4

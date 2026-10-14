@@ -1,0 +1,20 @@
+%YAML 1.1
+---
+name: TurtlebotSlamLaunchRunner
+spec_version: 1.2
+spec_type: interface
+description: "Launches the TurtleBot4 SLAM stack used to publish the map, transforms, and scan processing required by TurtleBot navigation capabilities."
+interface:
+  topics:
+    "/map":
+      type: "nav_msgs/msg/OccupancyGrid"
+      description: "The map topic produced by slam_toolbox during TurtleBot mapping."
+    "/scan":
+      type: "sensor_msgs/msg/LaserScan"
+      description: "The TurtleBot laser scan topic consumed by SLAM and Nav2."
+    "/tf":
+      type: "tf2_msgs/msg/TFMessage"
+      description: "Dynamic transforms published for the TurtleBot simulation and SLAM stack."
+    "/tf_static":
+      type: "tf2_msgs/msg/TFMessage"
+      description: "Static transforms published for the TurtleBot simulation and SLAM stack."
