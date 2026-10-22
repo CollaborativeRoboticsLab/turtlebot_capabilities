@@ -159,6 +159,18 @@ source install/setup.bash
 ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml
 ```
 
+By default, this launch uses the package-local [Fabric configuration](./config/fabric_config.yaml), installed under `share/turtlebot_capabilities/config/fabric_config.yaml`, rather than the upstream `fabric_server` configuration. It enables `use_sim_time` for Gazebo's `/clock` and monitors the simulated battery on `/battery_state`. 
+
+Start the simulation before launching Fabric; the default topics assume the simulator's empty namespace.
+
+To use a different configuration, override `fabric_config`:
+
+```bash
+ros2 launch turtlebot_capabilities system.launch.py fabric_config:=/absolute/path/to/fabric.yaml
+```
+
+For a physical robot, use a configuration with `use_sim_time: false`.
+
 To start with the experience stack, set `start_experience_stack:=true`. Otherwise, default is false and experinece stack will not be started.
 
 ```bash
@@ -167,4 +179,3 @@ ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml st
 ```
 
 Change `filename:=turtlebot_1.xml` to match the correct plan
-

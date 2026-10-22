@@ -22,7 +22,7 @@ def generate_launch_description():
 
     declare_fabric_config = DeclareLaunchArgument(
         'fabric_config',
-        default_value=PathJoinSubstitution([FindPackageShare('fabric_server'), 'config', 'fabric.yaml']),
+        default_value=PathJoinSubstitution([FindPackageShare('turtlebot_capabilities'), 'config', 'fabric_config.yaml']),
         description='Absolute path to the fabric configuration file'
     )
 
@@ -66,4 +66,3 @@ def generate_launch_description():
         declare_start_prompt_tools,
         fabric
     ])
-
