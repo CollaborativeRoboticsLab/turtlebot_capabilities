@@ -22,13 +22,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libpoco-dev \
     nlohmann-json3-dev \
     ros-${ROS_DISTRO}-navigation2 \
-    ros-${ROS_DISTRO}-nav2-bringup` \
+    ros-${ROS_DISTRO}-nav2-bringup \
     ros-${ROS_DISTRO}-slam-toolbox \
     ros-${ROS_DISTRO}-rqt-robot-monitor \
     ros-${ROS_DISTRO}-irobot-create-msgs \
     ros-${ROS_DISTRO}-irobot-create-description \
     ros-${ROS_DISTRO}-joint-state-publisher \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
     ros-${ROS_DISTRO}-image-transport \
@@ -79,3 +80,7 @@ RUN git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git 
 # git clone https://github.com/CollaborativeRoboticsLab/experience.git
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_experience.git
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_prompttools.git
+
+WORKDIR /home/$USERNAME/colcon_ws
+
+RUN rosdep install --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} -y

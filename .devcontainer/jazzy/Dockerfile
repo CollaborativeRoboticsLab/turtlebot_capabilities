@@ -80,3 +80,7 @@ RUN git clone https://github.com/CollaborativeRoboticsLab/turtlebot4_simulations
 # git clone https://github.com/CollaborativeRoboticsLab/experience.git
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_experience.git
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_prompttools.git
+
+WORKDIR /home/$USERNAME/colcon_ws
+
+RUN rosdep install --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} -y
