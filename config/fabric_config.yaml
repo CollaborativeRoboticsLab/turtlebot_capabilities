@@ -70,7 +70,7 @@
       use_chat_mode: false
 
     experience:
-      enabled: true
+      enabled: false
       core_plugin: "fabric::GraphKnowledgeCore"
       planner_plugin: "fabric::PlanningPlugin"
       scorer_plugin: "fabric::RapfsScorerPlugin"

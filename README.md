@@ -128,31 +128,11 @@ source install/setup.bash
 ros2 launch turtlebot4_maze_sim turtlebot4_maze_small.launch.py
 ```
 
-> Refer to the [turtlebot4_simulations README](https://github.com/CollaborativeRoboticsLab/turtlebot4_simulations) for more information on supported simulation scenarios.
+> Refer to the [turtlebot4_simulations README](https://github.com/CollaborativeRoboticsLab/turtlebot4_simulations) for more information on supported simulation scenarios. Turtlebot4 capabilities have declared dependencies on turtlebot4_navigation package's nav2.launch.py and slam.launch.py. 
 
-Start SLAM and Nav2
+> When using the simulation scenarios, make sure to set the `use_sim_time:=true` parameters in the [TurtlebotNav2LaunchRunner](./providers/TurtlebotNav2LaunchRunner.yaml) and [TurtlebotSlamLaunchRunner](./providers/TurtlebotSlamLaunchRunner.yaml).
 
-```bash
-source install/setup.bash
-ros2 launch turtlebot4_navigation slam.launch.py use_sim_time:=true
-```
-
-In a second terminal:
-
-```bash
-source install/setup.bash
-ros2 launch turtlebot4_navigation nav2.launch.py use_sim_time:=true
-```
-
-### Starting the Fabric and turtlebot capabilities
-
-(Optional) Start the Perception stack, which is required for the example plans 8,9,10. This also requires the `HUGGINGFACE_API_KEY` environment variable to be set in the terminal or in `.devcontainer/jazzy/.env` file.
-
-```bash
-source install/setup.bash
-ros2 launch turtlebot_capabilities perception.launch.py
-```
-
+> Similarly, perception related capabilities
 
 ```bash
 source install/setup.bash

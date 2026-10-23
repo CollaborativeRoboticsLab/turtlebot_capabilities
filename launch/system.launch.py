@@ -13,6 +13,7 @@ def generate_launch_description():
     start_experience_stack = LaunchConfiguration('start_experience_stack')
     experience_only = LaunchConfiguration('experience_only')
     start_prompt_tools = LaunchConfiguration('start_prompt_tools')
+    start_launch_proxy = LaunchConfiguration('start_launch_proxy')
 
     declare_plan_file_name = DeclareLaunchArgument(
         'filename',
@@ -44,6 +45,12 @@ def generate_launch_description():
         description='Whether to start prompt_bridge for prompt-based plan generation; set false to disable it'
     )
 
+    declare_start_launch_proxy = DeclareLaunchArgument(
+        'start_launch_proxy',
+        default_value='true',
+        description='Start the capabilities2 launch proxy; disable for an external proxy'
+    )
+
     plan_file_path = PathJoinSubstitution([FindPackageShare('turtlebot_capabilities'), 'plans', plan_file_name])
     fabric_launch_path = PathJoinSubstitution([FindPackageShare('fabric_server'), 'launch', 'fabric.launch.py'])
 
@@ -55,6 +62,7 @@ def generate_launch_description():
             'start_experience_stack': start_experience_stack,
             'experience_only': experience_only,
             'start_prompt_tools': start_prompt_tools,
+            'start_launch_proxy': start_launch_proxy,
         }.items(),
     )
 
@@ -64,5 +72,6 @@ def generate_launch_description():
         declare_start_experience_stack,
         declare_experience_only,
         declare_start_prompt_tools,
+        declare_start_launch_proxy,
         fabric
     ])

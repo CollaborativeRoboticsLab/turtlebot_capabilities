@@ -6,3 +6,9 @@ spec_version: 1.2
 description: "Launch provider that starts the TurtleBot-specific perception stack wrapper."
 implements: turtlebot_capabilities/TurtlebotPerceptionLaunchRunner
 runner: turtlebot_capabilities/perception.launch.py
+definition:
+  launch_parameters:
+    - key: use_sim_time
+      value: "true"
+    - key: namespace
+      value: ""
