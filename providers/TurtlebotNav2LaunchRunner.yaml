@@ -15,3 +15,6 @@ definition:
       value: "true"
     - key: namespace
       value: ""
+  lifecycle_readiness:
+    nodes: [planner_server, bt_navigator]
+    timeout_sec: 60.0

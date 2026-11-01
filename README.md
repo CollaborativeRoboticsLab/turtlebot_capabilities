@@ -132,6 +132,18 @@ ros2 launch turtlebot4_maze_sim turtlebot4_maze_small.launch.py
 
 > When using the simulation scenarios, make sure to set the `use_sim_time:=true` parameters in the [TurtlebotNav2LaunchRunner](./providers/TurtlebotNav2LaunchRunner.yaml) and [TurtlebotSlamLaunchRunner](./providers/TurtlebotSlamLaunchRunner.yaml).
 
+The explicit waypoint plans use the TurtleBot waypoint provider, which starts TurtleBot Nav2 and SLAM. The SLAM provider waits for `slam_toolbox` to become active, and the Nav2 provider waits for `planner_server` and `bt_navigator`. Each readiness check has a 60-second timeout configurable in its provider YAML.
+
+Configure rosout analysis in [fabric_config.yaml](./config/fabric_config.yaml):
+
+```yaml
+RosoutMonitor:
+  minimum_log_level: WARN  # DEBUG, INFO, WARN, ERROR, or FATAL
+  excluded_loggers: [prompt_bridge]
+```
+
+The threshold includes more severe messages. Logger exclusions also match namespaced logger names ending in the given name. Keep `prompt_bridge` excluded to prevent monitoring feedback. Restart the system after changing these settings. Prompt and response previews can be disabled by setting `log_prompt_content: false` in the prompt bridge configuration.
+
 > Similarly, perception related capabilities
 
 ```bash

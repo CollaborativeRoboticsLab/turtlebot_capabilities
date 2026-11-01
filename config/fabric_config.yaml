@@ -81,6 +81,8 @@
     RosoutMonitor:
       topic: "/rosout"
       frequency: 1.0
+      minimum_log_level: WARN
+      excluded_loggers: [prompt_bridge]
       model_family: openai
       model: gpt-6-luna
 

@@ -72,6 +72,10 @@
     </capability_provider>
 
     <capability_provider>
+      providers/TurtlebotWaypointRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
       providers/TurtlebotPerceptionLaunchRunner.yaml
     </capability_provider>
 
