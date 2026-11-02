@@ -15,6 +15,11 @@ definition:
       value: "true"
     - key: namespace
       value: ""
-  lifecycle_readiness:
-    nodes: [planner_server, bt_navigator]
-    timeout_sec: 60.0
+  launch_readiness:
+    lifecycle:
+      nodes: [planner_server, bt_navigator]
+      timeout_sec: 60.0
+    action:
+      name: navigate_to_pose
+      type: nav2_msgs/action/NavigateToPose
+      timeout: 60.0
