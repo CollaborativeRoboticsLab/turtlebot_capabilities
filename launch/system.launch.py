@@ -10,6 +10,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     plan_file_name = LaunchConfiguration('filename')
     fabric_config = LaunchConfiguration('fabric_config')
+    capabilities_config = LaunchConfiguration('capabilities_config')
     start_experience_stack = LaunchConfiguration('start_experience_stack')
     experience_only = LaunchConfiguration('experience_only')
     start_prompt_tools = LaunchConfiguration('start_prompt_tools')
@@ -25,6 +26,12 @@ def generate_launch_description():
         'fabric_config',
         default_value=PathJoinSubstitution([FindPackageShare('turtlebot_capabilities'), 'config', 'fabric_config.yaml']),
         description='Absolute path to the fabric configuration file'
+    )
+
+    declare_capabilities_config = DeclareLaunchArgument(
+        'capabilities_config',
+        default_value=PathJoinSubstitution([FindPackageShare('turtlebot_capabilities'), 'config', 'capabilities2_config.yaml']),
+        description='Absolute path to the capabilities2 configuration file'
     )
 
     declare_start_experience_stack = DeclareLaunchArgument(
@@ -59,6 +66,7 @@ def generate_launch_description():
         launch_arguments={
             'plan_file_path': plan_file_path,
             'fabric_config': fabric_config,
+            'capabilities_config': capabilities_config,
             'start_experience_stack': start_experience_stack,
             'experience_only': experience_only,
             'start_prompt_tools': start_prompt_tools,
@@ -69,6 +77,7 @@ def generate_launch_description():
     return LaunchDescription([
         declare_plan_file_name,
         declare_fabric_config,
+        declare_capabilities_config,
         declare_start_experience_stack,
         declare_experience_only,
         declare_start_prompt_tools,

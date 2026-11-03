@@ -92,7 +92,6 @@
       model_family: openai
       model: gpt-6-luna
 
-
     experience:
       enabled: false
       rebuild: false
