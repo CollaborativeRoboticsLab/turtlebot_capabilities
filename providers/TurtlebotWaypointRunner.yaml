@@ -4,7 +4,7 @@ name: TurtlebotWaypointRunner
 spec_type: provider
 spec_version: 1.2
 description: "TurtleBot waypoint provider using TurtleBot navigation and SLAM."
-implements: nav2_capabilities/WaypointRunner
+implements: turtlebot_capabilities/TurtlebotWaypointRunner
 runner: capabilities2_runner::WaypointRunner
 depends_on:
   "nav2_capabilities/Nav2LaunchRunner":

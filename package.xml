@@ -76,23 +76,27 @@
     </capability_provider>
 
     <capability_provider>
+      providers/TurtlebotRobotposeRunner.yaml
+    </capability_provider>
+
+    <capability_provider>
       providers/TurtlebotPerceptionLaunchRunner.yaml
     </capability_provider>
 
     <capability_provider>
-      providers/TranscribeRunner.yaml
+      providers/TurtlebotTranscribeRunner.yaml
     </capability_provider>
 
     <capability_provider>
-      providers/SpeechRunner.yaml
+      providers/TurtlebotSpeechRunner.yaml
     </capability_provider>
 
     <capability_provider>
-      providers/SentimentRunner.yaml
+      providers/TurtlebotSentimentRunner.yaml
     </capability_provider>
 
     <capability_provider>
-      providers/ImageAnalysisRunner.yaml
+      providers/TurtlebotImageAnalysisRunner.yaml
     </capability_provider>
   </export>
 </package>

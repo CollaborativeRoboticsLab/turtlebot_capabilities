@@ -4,14 +4,14 @@ name: ImageAnalysisRunner
 spec_type: provider
 spec_version: 1.2
 description: "TurtleBot-specific provider for image analysis requests using the TurtleBot perception stack."
-implements: fp_perception_capabilities/ImageAnalysisRunner
+implements: turtlebot_capabilities/TurtlebotImageAnalysisRunner
 runner: capabilities2_runner::ImageAnalysisRunner
 depends_on:
   "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
     provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
 
 definition:
-  command: "<Runner interface=fp_perception_capabilities/ImageAnalysisRunner provider=turtlebot_capabilities/ImageAnalysisRunner prompt='$prompt' use_device='$use_device' />"
+  command: "<Runner interface=turtlebot_capabilities/TurtlebotImageAnalysisRunner provider=turtlebot_capabilities/ImageAnalysisRunner prompt='$prompt' use_device='$use_device' />"
   configuration_parameters:
     - name: prompt
       type: string

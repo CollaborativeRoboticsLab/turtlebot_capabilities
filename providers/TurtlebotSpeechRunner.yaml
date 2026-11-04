@@ -4,14 +4,14 @@ name: SpeechRunner
 spec_type: provider
 spec_version: 1.2
 description: "TurtleBot-specific provider for speech synthesis requests using the TurtleBot perception stack."
-implements: fp_perception_capabilities/SpeechRunner
+implements: turtlebot_capabilities/TurtlebotSpeechRunner
 runner: capabilities2_runner::SpeechRunner
 depends_on:
   "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
     provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
 
 definition:
-  command: "<Runner interface=fp_perception_capabilities/SpeechRunner provider=turtlebot_capabilities/SpeechRunner use_device='$value' text='$value' voice='$value' instructions='$value' />"
+  command: "<Runner interface=turtlebot_capabilities/TurtlebotSpeechRunner provider=turtlebot_capabilities/SpeechRunner use_device='$value' text='$value' voice='$value' instructions='$value' />"
   configuration_parameters:
     - name: text
       type: string

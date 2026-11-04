@@ -4,14 +4,14 @@ name: TranscribeRunner
 spec_type: provider
 spec_version: 1.2
 description: "TurtleBot-specific provider for audio transcription requests using the TurtleBot perception stack."
-implements: fp_perception_capabilities/TranscribeRunner
+implements: turtlebot_capabilities/TurtlebotTranscribeRunner
 runner: capabilities2_runner::TranscribeRunner
 depends_on:
   "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner":
     provider: "turtlebot_capabilities/TurtlebotPerceptionLaunchRunner"
 
 definition:
-  command: "<Runner interface=fp_perception_capabilities/TranscribeRunner provider=turtlebot_capabilities/TranscribeRunner use_device='$value' audio_request_window='$value' />"
+  command: "<Runner interface=turtlebot_capabilities/TurtlebotTranscribeRunner provider=turtlebot_capabilities/TranscribeRunner use_device='$value' audio_request_window='$value' />"
   configuration_parameters:
     - name: use_device
       type: boolean
