@@ -38,4 +38,4 @@
       expand_opaque_functions_for_tracking: true
       
       # Maximum time in seconds to wait for a launch to stop.
-      stop_wait_timeout_sec: 10.0
+      stop_wait_timeout_sec: 45.0
