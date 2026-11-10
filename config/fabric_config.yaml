@@ -4,8 +4,12 @@
 
     # Empty selects the installed default; launch can override this value.
     plan_file_path: ""
+    bond:
+      topic: "/capabilities/bond"
+      connect_timeout_sec: 30.0
+      heartbeat_timeout_sec: 30.0
+      heartbeat_period_sec: 0.1
     capability_client:
-      bond_topic: "/capabilities/bond"
       service_wait_timeout_sec: -1
       services:
         get_interfaces: "/capabilities/get_interfaces"
@@ -47,50 +51,7 @@
       use_chat_mode: false
 
     telemetry:
-      retention_seconds: 300
       fabric_status_topic: "/fabric/status"
-      monitor_poll_frequency_hz: 2.0
-      monitor_plugins:
-        - "fabric::ResourceMonitor"
-        - "fabric::BatteryMonitor"
-        - "fabric::ExecutionStatusMonitor"
-        - "fabric::CapabilityEventMonitor"
-        - "fabric::RosoutMonitor"
-        - "fabric::RosDiagnosticsMonitor"
-
-    ResourceMonitor:
-      topic: "/capabilities2_launch_proxy/resources"
-      frequency: 1.0
-
-    BatteryMonitor:
-      enable: true
-      topic: "/battery_state"
-      frequency: 1.0
-
-    ExecutionStatusMonitor:
-      topic: "/fabric/status"
-      frequency: 1.0
-
-    CapabilityEventMonitor:
-      topic: ""
-      frequency: 1.0
-      service_name: "/capabilities/get_event_snapshot"
-      service_wait_timeout_sec: -1
-      max_events: 100
-
-    RosoutMonitor:
-      topic: "/rosout"
-      frequency: 1.0
-      minimum_log_level: WARN
-      excluded_loggers: [prompt_bridge]
-      model_family: openai
-      model: gpt-6-luna
-
-    RosDiagnosticsMonitor:
-      topic: "/diagnostics"
-      frequency: 1.0
-      model_family: openai
-      model: gpt-6-luna
 
     experience:
       enabled: false
@@ -254,3 +215,48 @@
       FaultBurdenPlugin:
         warning_weight: 1.0
         error_weight: 3.0
+
+      telemetry:
+        retention_seconds: 300
+        monitor_poll_frequency_hz: 2.0
+        monitor_plugins:
+          - "fabric::ResourceMonitor"
+          - "fabric::BatteryMonitor"
+          - "fabric::ExecutionStatusMonitor"
+          - "fabric::CapabilityEventMonitor"
+          - "fabric::RosoutMonitor"
+          - "fabric::RosDiagnosticsMonitor"
+
+      ResourceMonitor:
+        topic: "/capabilities2_launch_proxy/resources"
+        frequency: 1.0
+
+      BatteryMonitor:
+        enable: true
+        topic: "/battery_state"
+        frequency: 1.0
+
+      ExecutionStatusMonitor:
+        topic: "/fabric/status"
+        frequency: 1.0
+
+      CapabilityEventMonitor:
+        topic: ""
+        frequency: 1.0
+        service_name: "/capabilities/get_event_snapshot"
+        service_wait_timeout_sec: -1
+        max_events: 100
+
+      RosoutMonitor:
+        topic: "/rosout"
+        frequency: 1.0
+        minimum_log_level: WARN
+        excluded_loggers: [prompt_bridge]
+        model_family: openai
+        model: gpt-6-luna
+
+      RosDiagnosticsMonitor:
+        topic: "/diagnostics"
+        frequency: 1.0
+        model_family: openai
+        model: gpt-6-luna

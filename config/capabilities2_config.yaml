@@ -12,6 +12,12 @@
     # Maximum number of capability events retained in memory; nonpositive values use 100.
     event_history_size: 100
 
+    bond:
+      topic: "/capabilities/bond"
+      connect_timeout_sec: 30.0
+      heartbeat_timeout_sec: 30.0
+      heartbeat_period_sec: 0.1
+
     # Paths searched for packages containing capability specifications.
     package_paths:
       - install/

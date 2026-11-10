@@ -137,12 +137,13 @@ The explicit waypoint plans use the TurtleBot waypoint provider, which starts Tu
 Configure rosout analysis in [fabric_config.yaml](./config/fabric_config.yaml):
 
 ```yaml
-RosoutMonitor:
-  minimum_log_level: WARN  # DEBUG, INFO, WARN, ERROR, or FATAL
-  excluded_loggers: [prompt_bridge]
+experience:
+  RosoutMonitor:
+    minimum_log_level: WARN  # DEBUG, INFO, WARN, ERROR, or FATAL
+    excluded_loggers: [prompt_bridge]
 ```
 
-The threshold includes more severe messages. Logger exclusions also match namespaced logger names ending in the given name. Keep `prompt_bridge` excluded to prevent monitoring feedback. Restart the system after changing these settings. Prompt and response previews can be disabled by setting `log_prompt_content: false` in the prompt bridge configuration.
+The monitors run only when Experience is enabled. The threshold includes more severe messages. Logger exclusions also match namespaced logger names ending in the given name. Keep `prompt_bridge` excluded to prevent monitoring feedback. Restart the system after changing these settings. Prompt and response previews can be disabled by setting `log_prompt_content: false` in the prompt bridge configuration.
 \
 
 ```bash
@@ -151,6 +152,8 @@ ros2 launch turtlebot_capabilities system.launch.py filename:=turtlebot_1.xml
 ```
 
 By default, this launch uses the package-local [Fabric configuration](./config/fabric_config.yaml), installed under `share/turtlebot_capabilities/config/fabric_config.yaml`, rather than the upstream `fabric_server` configuration. It enables `use_sim_time` for Gazebo's `/clock` and monitors the simulated battery on `/battery_state`. 
+
+Bond settings are configured separately in [capabilities2_config.yaml](./config/capabilities2_config.yaml) and [fabric_config.yaml](./config/fabric_config.yaml). Set `bond.topic` to the same value in both files. `bond.connect_timeout_sec` limits bond formation; `bond.heartbeat_timeout_sec` and `bond.heartbeat_period_sec` control liveness monitoring after formation. Restart the system after changing these settings.
 
 Start the simulation before launching Fabric; the default topics assume the simulator's empty namespace.
 
