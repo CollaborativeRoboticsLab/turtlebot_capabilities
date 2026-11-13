@@ -68,18 +68,20 @@ RUN rosdep install --from-paths src --ignore-src -r -y
 WORKDIR /home/$USERNAME/colcon_ws/src
 
 RUN git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b experience-integration
+
 RUN git clone https://github.com/CollaborativeRoboticsLab/fabric.git -b experience-integration
 RUN git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git -b experience-integration
+RUN git clone https://github.com/CollaborativeRoboticsLab/fabric_experience_gui.git
+
 RUN git clone --recurse-submodules https://github.com/CollaborativeRoboticsLab/prompt_tools.git -b experience-integration
 RUN git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git -b experience-integration
+RUN git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_prompttools.git
+
 RUN git clone https://github.com/CollaborativeRoboticsLab/fp_perception.git -b experience-integration
 RUN git clone https://github.com/CollaborativeRoboticsLab/fp_perception_capabilities.git -b experience-integration
 RUN git clone https://github.com/CollaborativeRoboticsLab/nav2_capabilities.git -b experience-integration
+
 RUN git clone https://github.com/CollaborativeRoboticsLab/turtlebot4_simulations.git
-# git clone https://github.com/CollaborativeRoboticsLab/supervisor.git
-# git clone https://github.com/CollaborativeRoboticsLab/experience.git
-# git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_experience.git
-# git clone https://github.com/CollaborativeRoboticsLab/fabric_generator_prompttools.git
 
 WORKDIR /home/$USERNAME/colcon_ws
 
